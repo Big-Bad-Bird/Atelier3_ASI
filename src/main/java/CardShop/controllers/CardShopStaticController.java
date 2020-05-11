@@ -1,4 +1,4 @@
-package CardShop.Controllers;
+package CardShop.controllers;
 
 import java.util.List;
 

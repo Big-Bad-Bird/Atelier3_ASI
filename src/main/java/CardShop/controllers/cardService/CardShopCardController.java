@@ -1,4 +1,4 @@
-package CardShop.Controllers;
+package CardShop.controllers.cardService;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 import CardShop.models.CardModel;
 
 @RestController
-public class CardShopController {
+public class CardShopCardController {
 	@Autowired
-	private CardShopService cardShopService;
+	private CardShopCardService cardShopService;
 	
 	@RequestMapping("/Card/getAllCards")
 	public List<CardModel> getAllCards() {
