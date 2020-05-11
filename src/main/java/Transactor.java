@@ -1,4 +1,4 @@
-package CardShop.models;
+
 
 public class Transactor {
 

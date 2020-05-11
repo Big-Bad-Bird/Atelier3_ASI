@@ -1,11 +1,9 @@
-package CardShop.controllers.cardService;
+package CardShop.cardService;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
-import CardShop.models.CardModel;
 
 //import io.javabrains.springbootstarter.topic.Topic;
 

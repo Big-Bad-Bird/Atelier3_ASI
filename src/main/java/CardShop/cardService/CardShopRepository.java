@@ -1,4 +1,4 @@
-package CardShop.models;
+package CardShop.cardService;
 import java.util.List;
 import java.util.Optional;
 
