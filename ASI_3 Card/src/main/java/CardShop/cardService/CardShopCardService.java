@@ -34,22 +34,29 @@ public class CardShopCardService {
 				new CardModel(),
 				new CardModel()
 				);
-		this.CardShopRepository.saveAll(this.cards);
+		CardShopRepository.saveAll(this.cards);
 	}
 
 	// retourne toutes les cartes existantes
 	public List<CardModel> getallCard() {
-		List<CardModel> cards = new ArrayList<>();
-		cards = CardShopRepository.findAll();
+		List<CardModel> cards = new ArrayList<CardModel>();
+		
+		for (CardModel card : CardShopRepository.findAll()) {
+	        cards.add(card);
+		}
 		return cards;
 	}
-	
+
 	// retourne une carte spécifique
 	public CardModel getCard(String name) {
 		CardModel cardReturn = this.errorCard;
 		
-		List<CardModel> cardList = new ArrayList<>();
-		CardShopRepository.findAll().forEach(cardList::add);
+		List<CardModel> cardList = new ArrayList<CardModel>();
+		
+		for (CardModel card : CardShopRepository.findAll()) {
+	        cardList.add(card);
+		}
+		
 		for (CardModel card : cardList) {
 	        if (card.getName().equals(name)) {
 	            cardReturn = card; 
