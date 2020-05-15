@@ -99,10 +99,11 @@ public class CardShopCardService {
 			cardBuyer.setArgent(cardBuyer.getArgent() - transactor.cost);
 			cardSeller.setArgent(cardSeller.getArgent() + transactor.cost);
 			
-			
-			int idAcheteur = cardBuyer.getId();
-			int idVendeur = cardSeller.getId();
-			String cardId = transactor.cardId;
+			/*
+			*int idAcheteur = cardBuyer.getId();
+			*int idVendeur = cardSeller.getId();
+			*String cardId = transactor.cardId;
+			*/
 			
 			// à ce stade on peut trouver les utilisateurs par Id dans la BdD
 			// TODO ajouter connexion BdD quand on pourra
