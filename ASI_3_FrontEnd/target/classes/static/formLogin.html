@@ -80,7 +80,7 @@
                     		console.log(data)
                             alert("Username: " + data.name + "\nStatus: " + status);
                     		
-                    		document.cookie = "username="+data.username; 
+                    		var namecookie = document.cookie = "username="+data.username; 
                             console.log("Création cookie");
                         }
                 });

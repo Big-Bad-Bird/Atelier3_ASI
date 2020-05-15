@@ -29,7 +29,7 @@ $(document ).ready(function(){
         return null;
     }
     
-	$("#userNameId").html(getCookie(name));
+	$("#userNameId").html(getCookie("namecookie"));
 	
 	$.get("http://localhost:8081/...", function(data){
 		$("#userCashId").html(data.cash);
