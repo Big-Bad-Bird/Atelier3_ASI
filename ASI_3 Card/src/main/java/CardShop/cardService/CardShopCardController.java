@@ -18,13 +18,9 @@ public class CardShopCardController {
 	
 	@RequestMapping("/Card/getAllCards")
 	public List<CardModel> getAllCards() {
-		System.out.println("ok on reçoit la requête");
-		System.out.println("ok on reçoit la requête");
-		System.out.println("ok on reçoit la requête");
-		System.out.println("ok on reçoit la requête");
 		return cardShopCardService.getallCard();
 	}
-	
+		
 	@RequestMapping("/ById/{id}") // syntaxe pour Ã§a: /Byid/id
 	public CardModel getCardById(@PathVariable String id) {
 		return cardShopCardService.getCardById(id);

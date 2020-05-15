@@ -39,7 +39,7 @@ public class CardShopCardService {
 	// retourne toutes les cartes existantes
 	public List<CardModel> getallCard() {
 		List<CardModel> cards = new ArrayList<CardModel>();
-		
+		System.out.println("aezeaeze");
 		for (CardModel card : CardShopRepository.findAll()) {
 	        cards.add(card);
 		}
