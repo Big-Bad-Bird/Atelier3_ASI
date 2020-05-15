@@ -16,6 +16,11 @@ public class CardShopCardController {
 	@Autowired
 	private CardShopCardService cardShopCardService;
 	
+	@RequestMapping("/hello")
+	public String hello() {
+		return "hello";
+	}
+	
 	@RequestMapping("/Card/getAllCards")
 	public List<CardModel> getAllCards() {
 		return cardShopCardService.getallCard();
