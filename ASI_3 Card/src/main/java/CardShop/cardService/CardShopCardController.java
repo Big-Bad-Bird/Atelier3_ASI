@@ -18,6 +18,10 @@ public class CardShopCardController {
 	
 	@RequestMapping("/Card/getAllCards")
 	public List<CardModel> getAllCards() {
+		System.out.println("ok on reçoit la requête");
+		System.out.println("ok on reçoit la requête");
+		System.out.println("ok on reçoit la requête");
+		System.out.println("ok on reçoit la requête");
 		return cardShopCardService.getallCard();
 	}
 	
