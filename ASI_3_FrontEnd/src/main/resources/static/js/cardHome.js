@@ -12,9 +12,28 @@ $(document ).ready(function(){
         window.location.href = "http://localhost:8080/cardSell.html";
     });
     
-    $.get("/getUser", function(data){
-			$("#userNameId").html(data.userName);
-			$("#userCashId").html(data.Cash);
+    function getCookie(sName) {
+        var cookContent = document.cookie, cookEnd, i, j;
+        var sName = sName + "=";
+ 
+        for (i=0, c=cookContent.length; i<c; i++) {
+                j = i + sName.length;
+                if (cookContent.substring(i, j) == sName) {
+                        cookEnd = cookContent.indexOf(";", j);
+                        if (cookEnd == -1) {
+                                cookEnd = cookContent.length;
+                        }
+                        return decodeURIComponent(cookContent.substring(j, cookEnd));
+                }
+        }       
+        return null;
+    }
+    
+	$("#userNameId").html(getCookie(name));
+	
+	$.get("http://localhost:8081/...", function(data){
+		$("#userCashId").html(data.cash);
+
 	});
 });
 

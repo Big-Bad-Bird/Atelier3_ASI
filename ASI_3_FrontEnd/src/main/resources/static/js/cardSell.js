@@ -2,7 +2,7 @@ $(document ).ready(function(){
     
 	var i;
 	var nbCards = 1;
-	$.get("/getCardPerso", function(data){
+	$.get("http://localhost:8081/...", function(data){
 		fillCurrentCard(data[0]);
 		
 		for(i=1; i<=nbCards; i++){
@@ -11,7 +11,7 @@ $(document ).ready(function(){
 		
 		//ajout listeners
 		$(".sell").click(function(){
-			  $.post("/sell", {id: $(this).attr("data-cardid")}, function(result){
+			  $.post("http://localhost:808x/...", {id: $(this).attr("data-cardid")}, function(result){
 				  alert("Carte Vendue!");
 			  });
 		});
