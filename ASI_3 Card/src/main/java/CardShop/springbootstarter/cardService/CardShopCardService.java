@@ -33,7 +33,6 @@ public class CardShopCardService {
 				new CardModel(),
 				new CardModel()
 				);
-		CardShopRepository.saveAll(this.cards);
 	}
 
 	// retourne toutes les cartes existantes
