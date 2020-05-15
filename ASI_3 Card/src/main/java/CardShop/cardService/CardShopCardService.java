@@ -27,14 +27,20 @@ public class CardShopCardService {
 		
 		//TODO remplacer par appel à la BdD
 		this.cards = Arrays.asList(
+				new CardModel(),
+				new CardModel(),
+				new CardModel(),
+				new CardModel(),
+				new CardModel(),
 				new CardModel()
 				);
+		this.CardShopRepository.saveAll(this.cards);
 	}
 
 	// retourne toutes les cartes existantes
 	public List<CardModel> getallCard() {
 		List<CardModel> cards = new ArrayList<>();
-		CardShopRepository.findAll().forEach(cards::add);
+		cards = CardShopRepository.findAll();
 		return cards;
 	}
 	
