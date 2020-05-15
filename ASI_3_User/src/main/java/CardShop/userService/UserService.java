@@ -45,5 +45,14 @@ public class UserService {
 		System.out.println("\nTHIS USER => "+userFound);
 		return userFound;
 	}
+	
+	public User getUserMoney(String username) {
+		if(uRepo.findByUsername(username).isPresent()) {
+			User userToFind = uRepo.findByUsername(username).get();
+			System.out.println("\nUSER TO FIND => "+userToFind);
+			return userToFind;
+		}
+		return null;
+	}
 
 }

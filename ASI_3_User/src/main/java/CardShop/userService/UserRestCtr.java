@@ -62,6 +62,17 @@ public class UserRestCtr {
 		}
 	}
 	
+	@GetMapping("/getm-username/{username}")
+	public Integer getMoney(@PathVariable("username") String username) {
+		try {
+			User u = uService.getUserMoney(username);
+			return u.getArgent();
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@RequestMapping("/allusers")
 	public Iterable<User> getAllUser(){
 		return uService.getAllUser();
@@ -77,5 +88,6 @@ public class UserRestCtr {
 		return userFound;
 	}
 	
+
 
 }

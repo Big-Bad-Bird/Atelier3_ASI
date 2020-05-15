@@ -78,10 +78,14 @@
                     data:chaineJSON,
                     success: function(data, status){
                     		console.log(data)
-                            alert("Username: " + data.name + "\nStatus: " + status);
+                            alert("Username: " + data.username + "\nStatus: " + status);
                     		
-                    		var namecookie = document.cookie = "username="+data.username; 
+                    		var namecookie = document.cookie = "username="+data.username; sameSite=Lax; secure;
+
                             console.log("Création cookie");
+
+                            console.log(namecookie);
+                            document.write(document.cookie);
                         }
                 });
 
