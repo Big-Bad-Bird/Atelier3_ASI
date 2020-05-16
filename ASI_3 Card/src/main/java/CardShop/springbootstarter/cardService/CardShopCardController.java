@@ -16,7 +16,8 @@ public class CardShopCardController {
 	@Autowired
 	private CardShopCardService cardShopCardService;
 	
-	@RequestMapping("/hello")
+	// Pour debug si prb 404
+	@RequestMapping("/Card/hello")
 	public String hello() {
 		return "hello";
 	}
@@ -30,17 +31,17 @@ public class CardShopCardController {
 		return cardShopCardService.getallCard();
 	}
 		
-	@RequestMapping("/ById/{id}") // syntaxe pour ça: /Byid/id
+	@RequestMapping("/Card/ById/{id}") // syntaxe pour ça: /Byid/id
 	public CardModel getCardById(@PathVariable String id) {
 		return cardShopCardService.getCardById(id);
 	}
 	
-	@RequestMapping("/ByName/{name}") // syntaxe pour ça: /ByName/name
+	@RequestMapping("/Card/ByName/{name}") // syntaxe pour ça: /ByName/name
 	public CardModel getCard(@PathVariable String name) {
 		return cardShopCardService.getCard(name);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/addCard")
+	@RequestMapping(method=RequestMethod.POST,value="/Card/addCard")
 	public void addCard(@RequestBody CardModel card) {
 		cardShopCardService.addCard(card);
 	}
