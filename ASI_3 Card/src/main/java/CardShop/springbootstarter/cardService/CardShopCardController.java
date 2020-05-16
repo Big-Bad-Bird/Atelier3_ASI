@@ -21,6 +21,10 @@ public class CardShopCardController {
 		return "hello";
 	}
 	
+	@RequestMapping("/Card/init")
+	public void init() {
+		cardShopCardService.initCards();
+	}
 	@RequestMapping("/Card/getAllCards")
 	public List<CardModel> getAllCards() {
 		return cardShopCardService.getallCard();
