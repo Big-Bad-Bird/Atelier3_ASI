@@ -45,15 +45,16 @@ public class CardShopCardController {
 		cardShopCardService.addCard(card);
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE,value="/delCard/{card}")
-	public void delCard(@PathVariable CardModel card) {
-		cardShopCardService.delCard(card);
-	}
-	
-	@RequestMapping(method=RequestMethod.PUT,value="/transaction")
-	public void buyCard(@RequestBody Transactor transactor) { 
-		cardShopCardService.transactionCard(transactor);
-	}
+//	
+//	@RequestMapping(method=RequestMethod.DELETE,value="/delCard/{card}")
+//	public void delCard(@PathVariable CardModel card) {
+//		cardShopCardService.delCard(card);
+//	}
+//	
+//	@RequestMapping(method=RequestMethod.PUT,value="/transaction")
+//	public void buyCard(@RequestBody Transactor transactor) { 
+//		cardShopCardService.transactionCard(transactor);
+//	}
 
 }
 
