@@ -16,14 +16,14 @@ public class RoomController {
 	private RoomService roomService;
 	
 	// Pour debug si prb 404
-	@RequestMapping("/Card/hello")
+	@RequestMapping("/hello")
 	public String hello() {
 		return "hello";
 	}
 	
-	@RequestMapping("/getAllRooms")
-	public List<RoomModel> getAllRooms() {
-		return roomService.getallRooms();
+	@RequestMapping("/GetAllRooms")
+	public List<RoomModel> GetAllRooms() {
+		return roomService.GetAllRooms();
 	}
 	
 	@RequestMapping("/CreateRoom/{name}/{idUser1}/{mise}")

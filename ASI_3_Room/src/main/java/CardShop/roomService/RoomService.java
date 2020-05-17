@@ -23,7 +23,7 @@ public class RoomService {
 	}
 	
 	// retourne toutes les cartes existantes
-		public List<RoomModel> getallRooms() {
+		public List<RoomModel> GetAllRooms() {
 			List<RoomModel> rooms = new ArrayList<RoomModel>();
 			for (RoomModel room : roomRepository.findAll()) {
 		        rooms.add(room);
@@ -43,11 +43,14 @@ public class RoomService {
 		        if (room.getId().equals(id)) {
 		            if(room.getIdUser1().equals(idUser)){
 		            	room.setIdCard1(idCard);
-		            }else if(room.getIdUser2().equals(idUser)){
+		            	roomRepository.save(room);
+		            }else{
+		            	room.setIdUser2(idUser);
 		            	room.setIdCard2(idCard);
+			            room.setRoomState("In Progress");
+			            roomRepository.save(room);
+			            InitGame(room);
 		            }
-		            room.setRoomState("In Progress");
-		            InitGame(room);
 		        }
 			}
 		}
