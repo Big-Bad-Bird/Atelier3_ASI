@@ -35,11 +35,6 @@ public class RoomController {
 	public void AddCard(@PathVariable String id, @PathVariable String idUser, @PathVariable String idCard) {
 		roomService.AddCardRoom(id, idUser, idCard);
 	}
-
-	@RequestMapping("/RoomSetResult/{id}/{idUser}")
-	public void RoomSetResult(@PathVariable String id, @PathVariable String idUser) {
-		roomService.RoomSetResult(id, idUser);
-	}
 	
 	@RequestMapping("/RoomGetResult/{id}")
 	public String RoomGetResult(@PathVariable String id) {

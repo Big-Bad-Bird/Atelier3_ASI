@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 
 @Service
@@ -49,25 +51,30 @@ public class RoomService {
 		            	room.setIdCard2(idCard);
 			            room.setRoomState("In Progress");
 			            roomRepository.save(room);
-			            InitGame(room);
+			            GameRoom(room);
 		            }
 		        }
 			}
 		}
 		
-		private void InitGame(RoomModel room) {
+		private void GameRoom(RoomModel room) {
 			if (!(room.getIdCard1().equals("") || room.getIdCard2().equals(""))) {
-				//TODO Envoyer requête au service Game
+				//Requête post pour le jeu
+				RestTemplate restTemplate = new RestTemplate();
+				HttpEntity<RoomModel> requestBody = new HttpEntity<>(room);
+				String URL = "http://localhost:8085/InitGame";
+				
+				//on reçoit l'id du vainqueur
+				String winner = restTemplate.postForObject(URL, requestBody, String.class);
+				System.out.print(winner);
+				room.setRoomState(winner);
+				
+				//On envoie la récompense
+				RestTemplate restTemplate2 = new RestTemplate();
+				URL= "http://localhost:8085/GiveReward/".concat(winner);
+				String result = restTemplate2.getForObject(URL, String.class);
+		        System.out.println(result);
 			}
-		}
-		
-		public void RoomSetResult(String id, String idUser) {
-			for (RoomModel room : roomRepository.findAll()) {
-		        if (room.getId().equals(id)) {
-		            room.setRoomState(idUser);
-		        }
-			}
-			//TODO Requête vers user pour récompense de victoire
 		}
 		
 		public String RoomGetResult(String id) {
