@@ -1,4 +1,4 @@
-package CardShop.cardService;
+package CardShop.springbootstarter.cardService;
 
 import java.util.UUID;
 

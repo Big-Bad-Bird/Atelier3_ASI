@@ -1,11 +1,12 @@
-package CardShop.cardService;
+package CardShop.springbootstarter.cardService;
 
 
 public class Transactor {
 
 	String cardId;
-	String cardSeller;
-	String cardBuyer;
+	User cardSeller;
+	User cardBuyer;
+	int cost;
 	public Transactor() {
 		// TODO Auto-generated constructor stub
 	}
