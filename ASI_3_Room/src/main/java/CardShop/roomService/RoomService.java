@@ -2,10 +2,7 @@ package CardShop.roomService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +22,15 @@ public class RoomService {
 				);
 	}
 	
+	// retourne toutes les cartes existantes
+		public List<RoomModel> getallRooms() {
+			List<RoomModel> rooms = new ArrayList<RoomModel>();
+			for (RoomModel room : roomRepository.findAll()) {
+		        rooms.add(room);
+			}
+			return rooms;
+		}
+		
 	// ajoute une room
 		public void CreateRoom(String name, String idUser1, int mise) {
 			RoomModel room = new RoomModel(name, idUser1, mise);
@@ -32,8 +38,8 @@ public class RoomService {
 		}
 	
 	// ajoute une room
-		public void AddCard(String id, String idUser, String idCard) {
-			for (RoomModel room : rooms) {
+		public void AddCardRoom(String id, String idUser, String idCard) {
+			for (RoomModel room : roomRepository.findAll()) {
 		        if (room.getId().equals(id)) {
 		            if(room.getIdUser1().equals(idUser)){
 		            	room.setIdCard1(idCard);
@@ -53,7 +59,7 @@ public class RoomService {
 		}
 		
 		public void RoomSetResult(String id, String idUser) {
-			for (RoomModel room : rooms) {
+			for (RoomModel room : roomRepository.findAll()) {
 		        if (room.getId().equals(id)) {
 		            room.setRoomState(idUser);
 		        }
@@ -63,7 +69,7 @@ public class RoomService {
 		
 		public String RoomGetResult(String id) {
 			String result = "error";
-			for (RoomModel room : rooms) {
+			for (RoomModel room : roomRepository.findAll()) {
 		        if (room.getId().equals(id)) {
 		            result = room.getRoomState();
 		        }
