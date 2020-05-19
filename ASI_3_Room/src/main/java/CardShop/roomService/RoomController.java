@@ -18,7 +18,7 @@ public class RoomController {
 	// Pour debug si prb 404
 	@RequestMapping("/hello")
 	public String hello() {
-		return "hello";
+		return roomService.helloGame();
 	}
 	
 	@RequestMapping("/GetAllRooms")
