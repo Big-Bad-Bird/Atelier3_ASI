@@ -67,23 +67,25 @@ public class RoomService {
 		}
 	}
 	
+	//TODO Teste avec jeu réel (requête http marche)
 	private void GameRoom(RoomModel room) {
 		if (!(room.getIdCard1().equals("") || room.getIdCard2().equals(""))) {
 			//Requête post pour le jeu
 			RestTemplate restTemplate = new RestTemplate();
 			HttpEntity<RoomModel> requestBody = new HttpEntity<>(room);
-			String URL = "http://localhost:8085/InitGame";
+			String URL = "http://localhost:8085/testRoom";
 			
 			//on reçoit l'id du vainqueur
 			String winner = restTemplate.postForObject(URL, requestBody, String.class);
-			System.out.print(winner);
 			room.setRoomState(winner);
-			
+			roomRepository.save(room);
+			/*
 			//On envoie la récompense
 			RestTemplate restTemplate2 = new RestTemplate();
 			URL= "http://localhost:8085/GiveReward/".concat(winner);
 			String result = restTemplate2.getForObject(URL, String.class);
 	        System.out.println(result);
+	        */
 		}
 	}
 	
