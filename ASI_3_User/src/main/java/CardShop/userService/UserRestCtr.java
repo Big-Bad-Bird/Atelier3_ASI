@@ -1,11 +1,8 @@
 package CardShop.userService;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,9 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import net.bytebuddy.asm.Advice.This;
-import CardShop.userService.User;
 
 @CrossOrigin
 @RestController
@@ -73,6 +67,16 @@ public class UserRestCtr {
 		}
 	}
 	
+	@GetMapping("/getusercards/{username}")
+	public Set<CardModel> getUserCards(@PathVariable("username") String username){
+		try {
+			return uService.getUserCards(username);
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	@RequestMapping("/allusers")
 	public Iterable<User> getAllUser(){
 		return uService.getAllUser();
@@ -88,6 +92,6 @@ public class UserRestCtr {
 		return userFound;
 	}
 	
-
+	
 
 }

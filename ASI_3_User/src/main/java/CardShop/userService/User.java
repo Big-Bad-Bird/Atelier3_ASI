@@ -1,11 +1,13 @@
 package CardShop.userService;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -17,7 +19,8 @@ public class User {
 	private String username;
 	private String password;
 	private Integer argent;
-	private ArrayList<Long> collection; //Liste des cartes poss�d�es par l'utilisateur
+	@OneToMany()
+	private Set<CardModel> collection; //Liste des cartes poss�d�es par l'utilisateur
 	
 	public User () {
 		
@@ -64,11 +67,11 @@ public class User {
 	}
 	
 
-	public ArrayList<Long> getCollection() {
+	public Set<CardModel> getCollection() {
 		return collection;
 	}
 
-	public void setCollection(ArrayList<Long> collection) {
+	public void setCollection(Set<CardModel> collection) {
 		this.collection = collection;
 	}
 
