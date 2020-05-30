@@ -3,7 +3,7 @@ $(document ).ready(function(){
 	var i;
 	var id;
 	var nbCards = 1; //à changer
-	$.get("/Card/getAllCards", function(data){
+	$.get("http://localhost:8081/...", function(data){
 		fillCurrentCard(data[0]);
 		for(i=0; i<nbCards; i++){
 		    addCardToList(data[i]);
@@ -11,7 +11,7 @@ $(document ).ready(function(){
 		
 		//Ajout listeners
 		$(".buy").click(function(){
-			  $.post("/buy", {id: $(this).attr("data-cardid")}, function(result){
+			  $.post("http://localhost:8082/...", {id: $(this).attr("data-cardid")}, function(result){
 				  alert("Carte achetée!");
 			  });
 		});

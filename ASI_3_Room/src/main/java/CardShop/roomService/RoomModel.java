@@ -18,18 +18,29 @@ public class RoomModel {
 	private String idUser2;
 	private String idCard1;
 	private String idCard2;
+	private String roomState;
 	
 
-	public RoomModel(String name, String idUser1, String idCard1) {
+	public RoomModel(String name, String idUser1, int mise) {
 		super();
 		this.id = UUID.randomUUID().toString();
 		this.name = name;
+		this.mise = mise;
 		this.idUser1 = idUser1;
-		this.idCard1 = idCard1;
+		this.idCard1 = "";
 		this.idUser2 = "";
 		this.idCard2 = "";
+		this.roomState = "init";
 	}
 	
+	public String getRoomState() {
+		return roomState;
+	}
+
+	public void setRoomState(String roomState) {
+		this.roomState = roomState;
+	}
+
 	public RoomModel() {
 		this.id = UUID.randomUUID().toString();
 	}
