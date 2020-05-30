@@ -1,13 +1,13 @@
-package CardShop.springbootstarter;
+package Market.springbootstarter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CardShopAPI {
+public class marketAPI {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CardShopAPI.class, args);
+		SpringApplication.run(marketAPI.class, args);
 	}
 
 }
