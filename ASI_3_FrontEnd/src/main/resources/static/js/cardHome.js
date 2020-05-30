@@ -1,15 +1,13 @@
 $(document ).ready(function(){
 	
     $("#playButtonId").click(function(){
-        window.location.href = "http://demineur.hugames.fr/#level-3";
+        window.location.href = "/roomList.html";
     });    
     $("#buyButtonId").click(function(){
-        //TO DO
-        window.location.href = "http://localhost:8080/cardBuy.html";
+        window.location.href = "/cardBuy.html";
     });    
     $("#sellButtonId").click(function(){
-        //TO DO
-        window.location.href = "http://localhost:8080/cardSell.html";
+        window.location.href = "/cardSell.html";
     });
     
     function getCookie(sName) {
