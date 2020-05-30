@@ -42,6 +42,16 @@ public class RoomService {
 		}
 		return rooms;
 	}
+	
+	public RoomModel RoomByUserId(String id) {
+		RoomModel result = new RoomModel();
+		for (RoomModel room : roomRepository.findAll()) {
+	        if (room.getIdUser1().equals(id) || room.getIdUser2().equals(id)) {
+	            result = room;
+	        }
+		}
+		return result;
+	}
 		
 	// ajoute une room
 	public void CreateRoom(String name, String idUser1, int mise) {

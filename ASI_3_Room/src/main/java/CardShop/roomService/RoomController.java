@@ -26,6 +26,11 @@ public class RoomController {
 		return roomService.GetAllRooms();
 	}
 	
+		@RequestMapping("/RoomByUserId/{id}")
+	public RoomModel RoomByUserId(@PathVariable String id) {
+		return roomService.RoomByUserId(id);
+	}
+		
 	@RequestMapping("/CreateRoom/{name}/{idUser1}/{mise}")
 	public void CreateRoom(@PathVariable String name, @PathVariable String idUser1, @PathVariable int mise) {
 		roomService.CreateRoom(name, idUser1, mise);
@@ -40,7 +45,5 @@ public class RoomController {
 	public String RoomGetResult(@PathVariable String id) {
 		return roomService.RoomGetResult(id);
 	}
-	
 }
-
 
