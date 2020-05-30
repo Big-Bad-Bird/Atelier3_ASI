@@ -73,7 +73,7 @@ public class RoomService {
 			//Requête post pour le jeu
 			RestTemplate restTemplate = new RestTemplate();
 			HttpEntity<RoomModel> requestBody = new HttpEntity<>(room);
-			String URL = "http://localhost:8085/testRoom";
+			String URL = "http://localhost:8085/initGame";
 			
 			//on reçoit l'id du vainqueur
 			String winner = restTemplate.postForObject(URL, requestBody, String.class);

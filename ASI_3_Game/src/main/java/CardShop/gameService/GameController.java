@@ -27,7 +27,7 @@ public class GameController {
 			return room.getIdUser1();
 		}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/InitGame")
+	@RequestMapping(method=RequestMethod.POST,value="/initGame")
 	public String Game(@RequestBody RoomModel room) {
 		return gameService.Game(room);
 	}

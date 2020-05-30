@@ -9,14 +9,13 @@ public class GameService {
 	
 	public String Game(RoomModel room) {
 		String winner = "error";
-		
 		//récupération de la première carte
 		RestTemplate restTemplate = new RestTemplate();
-		String URL= "http://localhost:8081/getCardByID/".concat(room.getIdCard1());
+		String URL= "http://localhost:8083/Card/ById/".concat(room.getIdCard1());
 		CardModel card1 = restTemplate.getForObject(URL, CardModel.class);
 		
 		RestTemplate restTemplate2 = new RestTemplate();
-		URL= "http://localhost:8081/getCardByID/".concat(room.getIdCard1());
+		URL= "http://localhost:8083/Card/ById/".concat(room.getIdCard1());
 		CardModel card2 = restTemplate2.getForObject(URL, CardModel.class);
 		
 		System.out.print(card1);
