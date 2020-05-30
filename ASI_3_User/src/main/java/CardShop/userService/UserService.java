@@ -27,7 +27,7 @@ public class UserService {
 		getCardinit();
 		//System.out.println(getAllCards());
 		u.setCollection(fillCollection(getAllCards()));
-		System.out.println("\nCREATE USER");
+		System.out.println("\nCREATE USER : " + u);
 		uRepo.save(u);
 	
 		return u;		
@@ -66,7 +66,7 @@ public class UserService {
 	public Set<CardModel> getUserCards(String username){
 		if(uRepo.findByUsername(username).isPresent()) {
 			User userToFind = uRepo.findByUsername(username).get();
-			System.out.println("\nLes cartes de l'utilisateur" + username + "sont les suivantes :" + userToFind.getCollection());
+			System.out.println("\nLes cartes de l'utilisateur " + username + " sont les suivantes :" + userToFind.getCollection());
 			return userToFind.getCollection();
 		}
 		return null;
@@ -78,6 +78,22 @@ public class UserService {
 			mescartes.add(c);
 		}
 		return mescartes;
+	}
+	
+	public void addCard(Set<CardModel> cardstoadd, String username){
+		User userToFind = uRepo.findByUsername(username).get();
+		Set<CardModel> mycollection = userToFind.getCollection();
+		for(CardModel c : cardstoadd) {
+			mycollection.add(c);
+		}
+	}
+	
+	public void deleteCard(Set<CardModel> cardstodel, String username) {
+		User userToFind = uRepo.findByUsername(username).get();
+		Set<CardModel> mycollection = userToFind.getCollection();
+		for(CardModel c : cardstodel) {
+			mycollection.remove(c);
+		}
 	}
 	
 //REST TEMPLATE

@@ -92,6 +92,16 @@ public class UserRestCtr {
 		return userFound;
 	}
 	
+	@RequestMapping("/addCardCollec/{username}")
+	public void addCardList(@PathVariable("username") String username, Set<CardModel> cardstoadd){
+		uService.addCard(cardstoadd, username);
+	}
+	
+	@RequestMapping("/delCardCollec/{username}")
+	public void delCardList(@PathVariable("username") String username, Set<CardModel> cardstodel){
+		uService.deleteCard(cardstodel, username);
+	}
+	
 	
 
 }
