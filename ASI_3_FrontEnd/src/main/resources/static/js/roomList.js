@@ -1,14 +1,22 @@
 $(document ).ready(function(){
     
-   
+	
+	//A changer pour mettre que rooms valables
+	nbRooms=5;
+	$.get("http://localhost:8084/GetAllRooms", function(data){
+		
+		for (const room in data){
+			//TODO Tester quand je saurais que le user fonctionne
+			$.get("http://localhost:8081/user-info/"+data[room].idUser1, function(user){
+			
+				addRoomToList(data[room].id ,"room "+ data[room].name,"user" +user.username, data[room].mise);
+			});
+		}
+	});
     
-    for(i=0;i<5;i++){
-        addRoomToList(i,"room "+ i,"user" +i, 500);
-    }
     
      $("#createRoomButtonId").click(function(){
-        alert("Create Card button clicked ");
-        //TO DO
+    	 window.location.href = "/createRoom.html";
     }); 
     
 });

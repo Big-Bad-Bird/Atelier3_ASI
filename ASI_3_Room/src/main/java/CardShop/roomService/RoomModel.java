@@ -32,7 +32,8 @@ public class RoomModel {
 		this.idCard2 = "";
 		this.roomState = "init";
 	}
-	
+
+
 	public String getRoomState() {
 		return roomState;
 	}
@@ -43,6 +44,7 @@ public class RoomModel {
 
 	public RoomModel() {
 		this.id = UUID.randomUUID().toString();
+		this.name = "error room";
 	}
 
 	public String getId() {
