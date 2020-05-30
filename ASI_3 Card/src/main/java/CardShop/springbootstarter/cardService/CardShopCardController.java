@@ -30,7 +30,14 @@ public class CardShopCardController {
 	public List<CardModel> getAllCards() {
 		return cardShopCardService.getallCard();
 	}
-		
+	
+	@RequestMapping("/Card/getAllCardsWrapper")
+	public CardListWrapper getAllCardsWrapper() {
+		CardListWrapper cardListWrapper = new CardListWrapper();
+		cardListWrapper.cardList = this.getAllCards();
+		return cardListWrapper;
+	}
+	
 	@RequestMapping("/Card/ById/{id}") // syntaxe pour ça: /Byid/id
 	public CardModel getCardById(@PathVariable String id) {
 		return cardShopCardService.getCardById(id);

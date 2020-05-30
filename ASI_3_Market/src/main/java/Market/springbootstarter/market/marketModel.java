@@ -9,5 +9,6 @@ public class marketModel {
 		@Id
 		public String id;
 		
-		public int prix;
+		public String idUser;
+		public String idCard;
 }

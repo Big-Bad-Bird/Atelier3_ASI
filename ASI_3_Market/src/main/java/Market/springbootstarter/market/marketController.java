@@ -1,5 +1,7 @@
 package Market.springbootstarter.market;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,13 +23,18 @@ public class marketController {
 		return "hello";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/market/addBuy")
-	public void addBuy(@RequestBody marketModel transaction) {
-		market.addBuy(transaction);
+	@RequestMapping(method=RequestMethod.POST,value="/market/sell")
+	public void Buy(@RequestBody marketModel transaction) {
+		market.buy(transaction.idUser, transaction.idCard);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST,value="/market/addSell")
-	public void addSell(@RequestBody marketModel transaction) {
-		market.addSell(transaction);
+	@RequestMapping(method=RequestMethod.POST,value="/market/buy")
+	public void Sell(@RequestBody marketModel transaction) {
+		market.sell(transaction.idUser, transaction.idCard);
+	}
+	
+	@RequestMapping("/market/list")
+	public List<cardModel> list() {
+		return market.list();
 	}
 }
