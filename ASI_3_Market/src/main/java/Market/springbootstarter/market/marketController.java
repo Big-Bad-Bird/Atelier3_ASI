@@ -1,4 +1,4 @@
-package Market.marketService;
+package Market.springbootstarter.market;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
