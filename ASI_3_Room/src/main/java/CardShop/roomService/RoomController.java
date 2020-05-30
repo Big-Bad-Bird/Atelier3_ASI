@@ -16,14 +16,14 @@ public class RoomController {
 	private RoomService roomService;
 	
 	// Pour debug si prb 404
-	@RequestMapping("/Card/hello")
+	@RequestMapping("/hello")
 	public String hello() {
-		return "hello";
+		return roomService.helloGame();
 	}
 	
-	@RequestMapping("/getAllRooms")
-	public List<RoomModel> getAllRooms() {
-		return roomService.getallRooms();
+	@RequestMapping("/GetAllRooms")
+	public List<RoomModel> GetAllRooms() {
+		return roomService.GetAllRooms();
 	}
 	
 	@RequestMapping("/CreateRoom/{name}/{idUser1}/{mise}")
@@ -34,11 +34,6 @@ public class RoomController {
 	@RequestMapping("/AddCardRoom/{id}/{idUser}/{idCard}")
 	public void AddCard(@PathVariable String id, @PathVariable String idUser, @PathVariable String idCard) {
 		roomService.AddCardRoom(id, idUser, idCard);
-	}
-
-	@RequestMapping("/RoomSetResult/{id}/{idUser}")
-	public void RoomSetResult(@PathVariable String id, @PathVariable String idUser) {
-		roomService.RoomSetResult(id, idUser);
 	}
 	
 	@RequestMapping("/RoomGetResult/{id}")
