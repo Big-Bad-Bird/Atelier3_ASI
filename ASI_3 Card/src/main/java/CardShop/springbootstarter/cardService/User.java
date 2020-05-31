@@ -17,7 +17,7 @@ public class User {
 	private String username;
 	private String password;
 	private Integer argent;
-	private ArrayList<Long> collection; //Liste des cartes possédés par l'utilisateur
+	private ArrayList<Long> collection; //Liste des cartes possï¿½dï¿½es par l'utilisateur
 	
 	public User () {
 		
@@ -63,6 +63,7 @@ public class User {
 		this.argent = argent;
 	}
 	
+
 	public ArrayList<Long> getCollection() {
 		return collection;
 	}

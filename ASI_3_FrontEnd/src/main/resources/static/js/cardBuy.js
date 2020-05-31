@@ -2,8 +2,8 @@ $(document ).ready(function(){
     
 	var i;
 	var id;
-	var nbCards = 1; //à changer
-	$.get("http://localhost:8081/...", function(data){
+	var nbCards = 5;
+	$.get("http://localhost:8083/Card/getAllCards", function(data){
 		fillCurrentCard(data[0]);
 		for(i=0; i<nbCards; i++){
 		    addCardToList(data[i]);
@@ -11,8 +11,12 @@ $(document ).ready(function(){
 		
 		//Ajout listeners
 		$(".buy").click(function(){
-			  $.post("http://localhost:8082/...", {id: $(this).attr("data-cardid")}, function(result){
-				  alert("Carte achetée!");
+			
+			//Récupérer idUser avec cookie
+			//var idUser = 
+			var idUser = "Jdoe";
+			$.post("http://localhost:8082/market/buy", {idUser: idUser, idCard: $(this).attr("data-cardid")}, function(result){
+				alert("Carte Vendue!");
 			  });
 		});
 	});
