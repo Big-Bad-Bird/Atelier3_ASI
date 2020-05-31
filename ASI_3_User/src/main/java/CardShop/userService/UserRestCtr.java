@@ -102,6 +102,11 @@ public class UserRestCtr {
 		uService.deleteCard(cardstodel, username);
 	}
 	
+	@RequestMapping("/updatemoney/{username}")
+	public void updateMoney(@PathVariable("username") String username, int delta) { //delta = signed int
+		uService.updateUsermoney(delta, username);
+	}
+	
 	
 
 }

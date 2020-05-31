@@ -86,6 +86,7 @@ public class UserService {
 		for(CardModel c : cardstoadd) {
 			mycollection.add(c);
 		}
+		userToFind.setCollection(mycollection);
 	}
 	
 	public void deleteCard(Set<CardModel> cardstodel, String username) {
@@ -94,6 +95,14 @@ public class UserService {
 		for(CardModel c : cardstodel) {
 			mycollection.remove(c);
 		}
+		userToFind.setCollection(mycollection);
+	}
+	
+	public void updateUsermoney(int delta, String username) {
+		User userToFind = uRepo.findByUsername(username).get();
+		int mymoney = userToFind.getArgent();
+		mymoney = mymoney + delta;
+		userToFind.setArgent(mymoney);
 	}
 	
 //REST TEMPLATE
