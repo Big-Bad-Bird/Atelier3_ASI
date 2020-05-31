@@ -30,13 +30,16 @@ public class marketService {
 		// TODO Auto-generated constructor stub
 	}
 	public void buy(String idUser, String idCard) {
-		// TODO Auto-generated method stub
+		// TODO appels aux services USER associés
+		// argent -
+		// collec +
 		
 	}
 	
 	public void sell(String idUser, String idCard) {
-		// TODO Auto-generated method stub
-		
+		// TODO appels aux services USER associés
+		// argent +
+		// collec -
 	}
 	public List<cardModel> list() {
 		CardListWrapper cardListWrapper = restTemplate.getForObject(urlAllCards, CardListWrapper.class);
