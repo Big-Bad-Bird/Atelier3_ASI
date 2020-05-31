@@ -48,10 +48,16 @@ public class CardModel {
 
 	public CardModel() {
 		this.id = UUID.randomUUID().toString();
+		this.name = "default";
+		this.family = "none";
+		this.description = "default card";
 		this.hp = 500;
 		this.energy = 10;
 		this.attack = 100;
 		this.defence = 100;
+		this.imgUrl = "";
+		this.price = 1000;
+		
 	}
 
 	public String getName() {

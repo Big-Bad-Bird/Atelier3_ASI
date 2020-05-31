@@ -2,15 +2,15 @@ $(document ).ready(function(){
 	
 	//Récupérer avec cookie l'id user
 	//var userId =
-	var userId = "Jdoe";
+	var userId = "JDoe";
 	
-	setInterval(function(){ update(); }, 5000);
-}
+	setInterval(function(){ update(userId); }, 5000);
+});
 
-function update(){
-	
+function update(userId){
+
 	$.get("http://localhost:8084/RoomByUserId/"+userId, function(room){
-		if(room.state != "init" || room.state != "In Progress"){
+		if(room.roomState !== "init" && room.roomState !== "In Progress"){
 			window.location.href = "/resultGame.html";
 		}
 	});

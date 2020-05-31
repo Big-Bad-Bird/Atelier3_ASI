@@ -44,5 +44,6 @@ function addRoomToList(id,name, user, bet){
 };
 
 function onRoomSelected(id){
-    alert("Room selected : " +id);
+	//TODO Rentrer la room choisie en cookie
+	window.location.href = "/selectCardForPlay.html";
 }

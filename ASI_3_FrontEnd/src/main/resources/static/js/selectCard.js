@@ -1,20 +1,34 @@
 $(document ).ready(function(){
     
-    $('#roomNameId')[0].innerText=" A ";
+	//TODO Récupérer room id et name par cookie
+	var roomId = "5d7e7e77-16c9-45b7-9254-6361e000248c";
+	var roomName = "room A";
+    $('#roomNameId')[0].innerText=roomName;
     
-    
-    fillCurrentCard("https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/DC_Comics_logo.png/280px-DC_Comics_logo.png","DC comics","http://www.guinnessworldrecords.com/images/superlative/superheroes/GWR-Superheroes-SUPERMAN.svg","SUPERMAN","The origin story of Superman relates that he was born Kal-El on the planet Krypton, before being rocketed to Earth as an infant by his scientist father Jor-El, moments before Krypton's destruction. Discovered and adopted by a farm couple from Kansas, the child is raised as Clark Kent and imbued with a strong moral compass. Early in his childhood, he displays various superhuman abilities, which, upon reaching maturity, he resolves to use for the benefit of humanity through a 'Superman' identity.",50,100,17,8,100);
 
-
-    for(i=0;i<5;i++){
-        addCardToList(i,"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/DC_Comics_logo.png/280px-DC_Comics_logo.png","DC comics","http://www.guinnessworldrecords.com/images/superlative/superheroes/GWR-Superheroes-SUPERMAN.svg","SUPERMAN","The origin story of Superman relates that he was born Kal-El on the planet Krypton, before being rocketed to Earth as an infant by his scientist father Jor-El, moments before Krypton's destruction. Discovered and adopted by a farm couple from Kansas, the child is raised as Clark Kent and imbued with a strong moral compass. Early in his childhood, he displays various superhuman abilities, which, upon reaching maturity, he resolves to use for the benefit of humanity through a 'Superman' identity.",50,100,17,80);
-    }
-    
-    
-    $("#playButtonId").click(function(){
-        alert("Play button clicked ");
-        //TO DO
-    });
+    var i;
+	var id;
+	var nbCards = 5;
+	//A remplacer avec CardUser quand fonctionnel
+	$.get("http://localhost:8083/Card/getAllCards", function(data){
+		fillCurrentCard(data[0]);
+		for(i=0; i<nbCards; i++){
+		    addCardToList(data[i]);
+		}
+		
+		//Ajout listeners
+		$(".select").click(function(){
+			
+			//Récupérer idUser avec cookie
+			//var idUser = 
+			var idUser = "JDoe";
+			var url = "http://localhost:8084/AddCardRoom/"+roomId+"/"+idUser+"/"+$(this).attr("data-cardid");
+			$.get(url, function(result){
+				window.location.href = "/waitPlayer.html";
+			});
+			console.log(url);
+		});
+	});
     
 
 });
@@ -22,40 +36,41 @@ $(document ).ready(function(){
 
 
 
-function fillCurrentCard(imgUrlFamily,familyName,imgUrl,name,description,hp,energy,attack,defence,price){
+function fillCurrentCard(data){
     //FILL THE CURRENT CARD
-    $('#cardFamilyImgId')[0].src=imgUrlFamily;
-    $('#cardFamilyNameId')[0].innerText=familyName;
-    $('#cardImgId')[0].src=imgUrl;
-    $('#cardNameId')[0].innerText=name;
-    $('#cardDescriptionId')[0].innerText=description;
-    $('#cardHPId')[0].innerText=hp+" HP";
-    $('#cardEnergyId')[0].innerText=energy+" Energy";
-    $('#cardAttackId')[0].innerText=attack+" Attack";
-    $('#cardDefenceId')[0].innerText=defence+" Defence";
-  
+    $('#cardFamilyImgId')[0].src=data.imgUrlFamily;
+    $('#cardFamilyNameId')[0].innerText=data.family;
+    $('#cardImgId')[0].src=data.imgUrl;
+    $('#cardNameId')[0].innerText=data.name;
+    $('#cardDescriptionId')[0].innerText=data.description;
+    $('#cardHPId')[0].innerText=data.hp+" HP";
+    $('#cardEnergyId')[0].innerText=data.energy+" Energy";
+    $('#cardAttackId')[0].innerText=data.attack+" Attack";
+    $('#cardDefenceId')[0].innerText=data.defence+" Defence";
 };
 
 
-function addCardToList(id,imgUrlFamily,familyName,imgUrl,name,description,hp,energy,attack,defence){
+function addCardToList(data){
     
     content="\
     <td> \
-    <img  class='ui avatar image' src='"+imgUrl+"'> <span>"+name+" </span> \
+    <img  class='ui avatar image' src='"+data.imgUrl+"'> <span>"+data.name+" </span> \
    </td> \
-    <td>"+description+"</td> \
-    <td>"+familyName+"</td> \
-    <td>"+hp+"</td> \
-    <td>"+energy+"</td> \
-    <td>"+attack+"</td> \
-    <td>"+defence+"</td> \
+    <td>"+data.description+"</td> \
+    <td>"+data.family+"</td> \
+    <td>"+data.hp+"</td> \
+    <td>"+data.energy+"</td> \
+    <td>"+data.attack+"</td> \
+    <td>"+data.defence+"</td> \
     <td>\
-        <div class='ui vertical animated button' tabindex='0' onClick='onCardSelected("+id+")'>\
-            <div class='hidden content'>Select</div>\
-    <div class='visible content'>\
-        <i class='checkmark icon'></i>\
-    </div>\
-    </div>\
+    	<div class='select' tabindex='0' data-cardid="+data.id+">\
+        	<div class='ui vertical animated button' tabindex='0'>\
+            	<div class='hidden content'>Select</div>\
+        		<div class='visible content'>\
+        			<i class='checkmark icon'></i>\
+        		</div>\
+        	</div>\
+        </div>\
     </td>";
     
     $('#cardListId tr:last').after('<tr>'+content+'</tr>');
@@ -63,9 +78,3 @@ function addCardToList(id,imgUrlFamily,familyName,imgUrl,name,description,hp,ene
     
 };
 
-
-function onCardSelected(id){
-    alert("Card selected : " +id);
-    
-    //TODO
-}

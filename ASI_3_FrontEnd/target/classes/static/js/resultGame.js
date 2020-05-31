@@ -2,12 +2,12 @@
     
 	//Récupérer avec cookie l'id user
 	//var userId =
-	var userId = "Jdoe";
+	var userId = "JDoe";
 	
 	$.get("http://localhost:8084/RoomByUserId/"+userId, function(room){
 		 $('#roomNameId')[0].innerText=room.name;
 		 	
-		 if(room.state == userId){
+		 if(room.roomState == userId){
 			 $('#resultTitleId')[0].innerText=" YOU WIN ! ";
 		 }else{
 			 $('#resultTitleId')[0].innerText=" You Loose... ";
@@ -20,7 +20,7 @@
 		 }else{
 			 idCard = room.idCard2;
 		 }
-		 $.get("http://localhost:808?/Card/ById/"+idCard, function(card){
+		 $.get("http://localhost:8083/Card/ById/"+idCard, function(card){
 			 $('#cardNameId')[0].innerText=card.name;
 		 });
 		 

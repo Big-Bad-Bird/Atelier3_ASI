@@ -9,15 +9,15 @@ $(document ).ready(function(){
 		    addCardToList(data[i]);
 		}
 		
-		//Ajout listeners
-		$(".buy").click(function(){
-			
-			//Récupérer idUser avec cookie
-			//var idUser = 
-			var idUser = "Jdoe";
-			$.post("http://localhost:8082/market/buy", {idUser: idUser, idCard: $(this).attr("data-cardid")}, function(result){
-				alert("Carte Vendue!");
-			  });
+	//Ajout listeners
+	$(".buy").click(function(){
+		
+		//Récupérer idUser avec cookie
+		//var idUser = 
+		var idUser = "Jdoe";
+		$.post("http://localhost:8082/market/buy", {idUser: idUser, idCard: $(this).attr("data-cardid")}, function(result){
+			alert("Carte Vendue!");
+		  });
 		});
 	});
 

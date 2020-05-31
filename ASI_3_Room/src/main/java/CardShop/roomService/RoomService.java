@@ -1,7 +1,6 @@
 package CardShop.roomService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -15,13 +14,9 @@ public class RoomService {
 	
 	@Autowired
 	private RoomRepository roomRepository;
-	List<RoomModel> rooms;
+	
 	public RoomService() {
-		
-		//TODO remplacer par appel à la BdD
-		this.rooms = Arrays.asList(
-				new RoomModel()
-				);
+
 	}
 	
 	//test http

@@ -2,8 +2,10 @@ $(document ).ready(function(){
     
 	var i;
 	var nbCards = 1;
-	//TODO Corriger adresse
-	$.get("http://localhost:8081/UserCard", function(data){
+	//TODO cookie
+	var userId = JDoe;
+	
+	$.get("http://localhost:8081//getusercards/"+userId, function(data){
 		fillCurrentCard(data[0]);
 		
 		for(i=1; i<=nbCards; i++){
@@ -13,7 +15,7 @@ $(document ).ready(function(){
 		//ajout listeners
 		$(".sell").click(function(){
 			
-			//Récupérer idUser avec cookie
+			//TODORécupérer idUser avec cookie
 			//var idUser = 
 			var idUser = "Jdoe";
 			$.post("http://localhost:8082/market/sell", {idUser: idUser, idCard: $(this).attr("data-cardid")}, function(result){
