@@ -14,12 +14,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class marketService {
 
 	static final String urlAllCards = "http://localhost:8083/Card/getAllCardsWrapper";
-	static final String urlCard = "http://localhost:8083/Card/ById/"; // + id carte
 	
 	// TODO Demander URL pour ça
-	static final String urlUserMoneyGet = "http://localhost:8081/";
-	static final String urlUserMoneyPut = "http://localhost:8081/";
-	static final String urlUserCollection = "http://localhost:8081/";
+	final String urlUserMoneyGet = "http://localhost:8081/";
+	final String urlUserMoneyPut = "http://localhost:8081/";
+	final String urlUserCollection = "http://localhost:8081/";
 	
 	RestTemplate restTemplate = new RestTemplate();
 	ObjectMapper objectMapper = new ObjectMapper();
@@ -32,16 +31,33 @@ public class marketService {
 	public void buy(String idUser, String idCard) {
 		// TODO appels aux services USER associés
 		// argent - étape 1 demander argent étape 2 demander coût 3 changer argent
-		int moneyUser = restTemplate.getForObject(urlUserMoneyGet, int.class);
-		int costCard = restTemplate.getForObject(urlCard, cardModel.class).getPrice();
-		// collec + é
+		
+		final String urlUserMoneyGetId = this.urlUserMoneyGet + idUser;
+		int moneyUser = restTemplate.getForObject(urlUserMoneyGetId, int.class);
+		
+		final String urlCardId = "http://localhost:8083/Card/ById/" + idCard;
+		int costCard = restTemplate.getForObject(urlCardId, cardModel.class).getPrice();
+		
+		int newMoneyValue = moneyUser - costCard;
+		// envoyer nouvelle valeur argent
+		
+		// collec +
 		
 	}
 	
 	public void sell(String idUser, String idCard) {
 		// TODO appels aux services USER associés
-		// argent +
+		final String urlUserMoneyGetId = this.urlUserMoneyGet + idUser;
+		int moneyUser = restTemplate.getForObject(urlUserMoneyGetId, int.class);
+		
+		final String urlCardId = "http://localhost:8083/Card/ById/" + idCard;
+		int costCard = restTemplate.getForObject(urlCardId, cardModel.class).getPrice();
+		
+		int newMoneyValue = moneyUser + costCard;
+		// envoyer nouvelle valeur argent
+		
 		// collec -
+		
 	}
 	public List<cardModel> list() {
 		CardListWrapper cardListWrapper = restTemplate.getForObject(urlAllCards, CardListWrapper.class);
