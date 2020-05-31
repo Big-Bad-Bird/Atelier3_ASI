@@ -1,6 +1,5 @@
 package Market.springbootstarter.market;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,8 @@ public class marketService {
 	static final String urlCard = "http://localhost:8083/Card/ById/"; // + id carte
 	
 	// TODO Demander URL pour ça
-	static final String urlUserMoney = "http://localhost:8081/";
+	static final String urlUserMoneyGet = "http://localhost:8081/";
+	static final String urlUserMoneyPut = "http://localhost:8081/";
 	static final String urlUserCollection = "http://localhost:8081/";
 	
 	RestTemplate restTemplate = new RestTemplate();
@@ -31,8 +31,10 @@ public class marketService {
 	}
 	public void buy(String idUser, String idCard) {
 		// TODO appels aux services USER associés
-		// argent -
-		// collec +
+		// argent - étape 1 demander argent étape 2 demander coût 3 changer argent
+		int moneyUser = restTemplate.getForObject(urlUserMoneyGet, int.class);
+		int costCard = restTemplate.getForObject(urlCard, cardModel.class).getPrice();
+		// collec + é
 		
 	}
 	
