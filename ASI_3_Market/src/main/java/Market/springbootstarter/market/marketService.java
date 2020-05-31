@@ -17,7 +17,7 @@ public class marketService {
 	
 	// TODO Demander URL pour ça
 	final String urlUserMoneyGet = "http://localhost:8081/";
-	final String urlUserMoneyPut = "http://localhost:8081/";
+	final String urlUserMoneyPut = "http://localhost:8081//updatemoney/";
 	final String urlUserCollection = "http://localhost:8081/";
 	
 	RestTemplate restTemplate = new RestTemplate();
@@ -30,20 +30,17 @@ public class marketService {
 	}
 	public void buy(String idUser, String idCard) {
 		// TODO appels aux services USER associés
-		// argent - étape 1 demander argent étape 2 demander coût 3 changer argent
-		
-		final String urlUserMoneyGetId = this.urlUserMoneyGet + idUser;
-		int moneyUser = restTemplate.getForObject(urlUserMoneyGetId, int.class);
-		
-		final String urlCardId = "http://localhost:8083/Card/ById/" + idCard;
-		int costCard = restTemplate.getForObject(urlCardId, cardModel.class).getPrice();
-		
-		int newMoneyValue = moneyUser - costCard;
-		// envoyer nouvelle valeur argent
-		
-		// collec +
-		
-	}
+			final String urlUserMoneyGetId = this.urlUserMoneyGet + idUser;
+			int moneyUser = restTemplate.getForObject(urlUserMoneyGetId, int.class);
+			
+			final String urlCardId = "http://localhost:8083/Card/ById/" + idCard;
+			int costCard = restTemplate.getForObject(urlCardId, cardModel.class).getPrice();
+			// envoyer nouvelle valeur argent
+			costCard = - costCard;
+			restTemplate.put(this.urlUserMoneyPut  + idUser, costCard);
+			// collec -
+				
+		}
 	
 	public void sell(String idUser, String idCard) {
 		// TODO appels aux services USER associés
@@ -52,10 +49,10 @@ public class marketService {
 		
 		final String urlCardId = "http://localhost:8083/Card/ById/" + idCard;
 		int costCard = restTemplate.getForObject(urlCardId, cardModel.class).getPrice();
-		
-		int newMoneyValue = moneyUser + costCard;
-		// envoyer nouvelle valeur argent
-		
+
+		restTemplate.put(this.urlUserMoneyPut  + idUser, costCard);
+		//HttpEntity<int> delta = new HttpEntity<>(costCard);
+		//restTemplate.exchange(this.urlUserMoneyPut  + idUser, HttpMethod.PUT, delta, Void.class);
 		// collec -
 		
 	}
