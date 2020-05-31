@@ -56,13 +56,13 @@
             function create_u(){
                 // Création de la requête
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'create-user');
+                xhr.open('POST', 'http://127.0.0.1:8081/create-user');
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         var json = JSON.parse(xhr.responseText);
                         console.log(json);
-                     }
+                    }
                 };
 
                 // Récupération des données de l'utilisateur

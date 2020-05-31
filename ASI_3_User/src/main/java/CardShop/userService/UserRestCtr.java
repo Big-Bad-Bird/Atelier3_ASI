@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 public class UserRestCtr {
+
 	
 	private User currentUser;
 	
@@ -39,6 +40,7 @@ public class UserRestCtr {
 	
 	@PostMapping("/create-user")
 	public User userService(@RequestBody User newUser) {
+		System.out.println("\nEntrée dans create-user");
 		try {
 			User u = uService.createUser(newUser);
 			return u;
