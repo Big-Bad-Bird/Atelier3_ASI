@@ -18,6 +18,9 @@ public class UserService {
 	@Autowired
 	UserRepository uRepo;
 	
+	@Autowired
+	CardModelRepository CMRepo;
+	
 	public User createUser(User newUser) {
 		User u = new User();
 		u.setName(newUser.getName());
@@ -25,9 +28,13 @@ public class UserService {
 		u.setPassword(newUser.getPassword());
 		u.setArgent(10000);
 		getCardinit();
-		//System.out.println(getAllCards());
-		u.setCollection(fillCollection(getAllCards()));
-		System.out.println("\nCREATE USER : " + u);
+		List<CardModel> allcards = getAllCards();
+		System.out.println("\nTHIS IS getAllCards de mon rest template :" + allcards + "\n");
+		Set<CardModel> myfilledcollec = fillCollection(allcards);
+		System.out.println("\nTHIS IS fillCollection(getAllCards()) de ma méthode : " + fillCollection(allcards) + "\n");
+		u.setCollection(myfilledcollec);
+		//u.setCollection(fillCollection(getAllCards()));
+		System.out.println("\nCREATE USER : " + u + "\n");
 		uRepo.save(u);
 	
 		return u;		
@@ -75,6 +82,7 @@ public class UserService {
 	private Set<CardModel> fillCollection(List<CardModel> allcardslist){
 		Set<CardModel> mescartes = new HashSet<CardModel>();
 		for(CardModel c : allcardslist) {
+			CMRepo.save(c);
 			mescartes.add(c);
 		}
 		return mescartes;
@@ -87,6 +95,7 @@ public class UserService {
 			mycollection.add(c);
 		}
 		userToFind.setCollection(mycollection);
+		uRepo.save(userToFind);
 	}
 	
 	public void deleteCard(Set<CardModel> cardstodel, String username) {
@@ -96,13 +105,16 @@ public class UserService {
 			mycollection.remove(c);
 		}
 		userToFind.setCollection(mycollection);
+		uRepo.save(userToFind);
 	}
 	
-	public void updateUsermoney(int delta, String username) {
+	public int updateUsermoney(int delta, String username) {
 		User userToFind = uRepo.findByUsername(username).get();
 		int mymoney = userToFind.getArgent();
 		mymoney = mymoney + delta;
 		userToFind.setArgent(mymoney);
+		uRepo.save(userToFind);
+		return userToFind.getArgent();
 	}
 	
 //REST TEMPLATE
@@ -124,6 +136,7 @@ public class UserService {
 //		  = restTemplate.getForEntity(AllCardsURL, List<CardModel>);
 		ResponseEntity<List<CardModel>> response
 		  = restTemplate.exchange(AllCardsURL, HttpMethod.GET, null, new ParameterizedTypeReference<List<CardModel>>(){});
+		System.out.println("\nTHIS IS MY RESPONSEBODY :" + response.getBody() + "\n");
 		return response.getBody();
 	}
 	
