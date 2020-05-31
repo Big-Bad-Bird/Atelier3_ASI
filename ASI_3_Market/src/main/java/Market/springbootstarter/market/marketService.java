@@ -23,6 +23,7 @@ public class marketService {
 	
 	RestTemplate restTemplate = new RestTemplate();
 	ObjectMapper objectMapper = new ObjectMapper();
+	
 	@Autowired
 	private marketRepository market;
 	public marketService() {
