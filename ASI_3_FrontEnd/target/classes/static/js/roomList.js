@@ -1,17 +1,28 @@
 $(document ).ready(function(){
     
 	
-	//A changer pour mettre que rooms valables
+	//TODO plus tard: changer pour mettre que rooms valables
 	nbRooms=5;
+	
 	$.get("http://localhost:8084/GetAllRooms", function(data){
 		
 		for (const room in data){
-			//TODO Tester quand je saurais que le user fonctionne
+			/*
+			//TODO Version qui récupère le pseudo du crateur, à tester quand je saurais que le user fonctionne
 			$.get("http://localhost:8081/user-info/"+data[room].idUser1, function(user){
 			
 				addRoomToList(data[room].id ,"room "+ data[room].name,"user" +user.username, data[room].mise);
 			});
+			*/
+			addRoomToList(data[room].id ,"room "+ data[room].name,"user: username", data[room].mise);
 		}
+		
+		//listeners
+		$(".select").click(function(){
+			//TODO Ajout de l'id room dans un cookie
+			
+			window.location.href = "/selectCardForPlay.html";
+		});
 	});
     
     
@@ -28,22 +39,19 @@ function addRoomToList(id,name, user, bet){
                             <td> "+user+" </td> \
                             <td> "+bet+" $</td> \
                             <td> \
-                                <div class='center aligned'> \
-                                    <div class='ui  vertical animated button' tabindex='0' onClick='onRoomSelected("+id+")'> \
-                                        <div class='hidden content'>Play</div> \
-                                        <div class='visible content'> \
-                                            <i class='play circle icon'></i> \
-                                        </div> \
+                            	<div class='select' tabindex='0' data-cardid="+id+">\
+                                	<div class='center aligned'> \
+                                    	<div class='ui  vertical animated button' tabindex='0'> \
+                                        	<div class='hidden content'>Play</div> \
+                                        	<div class='visible content'> \
+                                            	<i class='play circle icon'></i> \
+                                    		</div> \
+                                    	</div> \
                                     </div> \
-                                </div> \
+                                 </div/ \
                             </td>";
     
     $('#roomListId tr:last').after('<tr>'+content+'</tr>');
     
     
 };
-
-function onRoomSelected(id){
-	//TODO Rentrer la room choisie en cookie
-	window.location.href = "/selectCardForPlay.html";
-}

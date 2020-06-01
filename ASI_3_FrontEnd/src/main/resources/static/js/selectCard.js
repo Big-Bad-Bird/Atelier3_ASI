@@ -1,7 +1,7 @@
 $(document ).ready(function(){
     
 	//TODO Récupérer room id et name par cookie
-	var roomId = "5d7e7e77-16c9-45b7-9254-6361e000248c";
+	var roomId = "41543de7-93c6-4e2a-8bcc-a5abda257655";
 	var roomName = "room A";
     $('#roomNameId')[0].innerText=roomName;
     
@@ -24,6 +24,7 @@ $(document ).ready(function(){
 			var idUser = "JDoe";
 			var url = "http://localhost:8084/AddCardRoom/"+roomId+"/"+idUser+"/"+$(this).attr("data-cardid");
 			$.get(url, function(result){
+				console.log(result);
 				window.location.href = "/waitPlayer.html";
 			});
 			console.log(url);

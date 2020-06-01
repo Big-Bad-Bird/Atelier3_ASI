@@ -1,11 +1,11 @@
 $(document ).ready(function(){
     
 	var i;
-	var nbCards = 1;
+	var nbCards = 5;
 	//TODO cookie
 	var userId = JDoe;
 	
-	$.get("http://localhost:8081//getusercards/"+userId, function(data){
+	$.get("http://localhost:8081/getusercards/"+userId, function(data){
 		fillCurrentCard(data[0]);
 		
 		for(i=1; i<=nbCards; i++){

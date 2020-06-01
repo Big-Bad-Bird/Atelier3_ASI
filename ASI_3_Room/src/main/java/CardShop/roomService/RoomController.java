@@ -32,13 +32,13 @@ public class RoomController {
 	}
 		
 	@RequestMapping("/CreateRoom/{name}/{idUser1}/{mise}")
-	public void CreateRoom(@PathVariable String name, @PathVariable String idUser1, @PathVariable int mise) {
-		roomService.CreateRoom(name, idUser1, mise);
+	public String CreateRoom(@PathVariable String name, @PathVariable String idUser1, @PathVariable int mise) {
+		return roomService.CreateRoom(name, idUser1, mise);
 	}
 	
 	@RequestMapping("/AddCardRoom/{id}/{idUser}/{idCard}")
-	public void AddCard(@PathVariable String id, @PathVariable String idUser, @PathVariable String idCard) {
-		roomService.AddCardRoom(id, idUser, idCard);
+	public String AddCard(@PathVariable String id, @PathVariable String idUser, @PathVariable String idCard) {
+		return roomService.AddCardRoom(id, idUser, idCard);
 	}
 	
 	@RequestMapping("/RoomGetResult/{id}")

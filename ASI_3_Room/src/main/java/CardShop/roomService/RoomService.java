@@ -49,27 +49,32 @@ public class RoomService {
 	}
 		
 	// ajoute une room
-	public void CreateRoom(String name, String idUser1, int mise) {
+	public String CreateRoom(String name, String idUser1, int mise) {
 		RoomModel room = new RoomModel(name, idUser1, mise);
 		roomRepository.save(room);
+		return "room cree";
 	}
 	
 	// ajoute une room
-	public void AddCardRoom(String id, String idUser, String idCard) {
+	public String AddCardRoom(String id, String idUser, String idCard) {
+		String result = "fail";
 		for (RoomModel room : roomRepository.findAll()) {
 	        if (room.getId().equals(id)) {
 	            if(room.getIdUser1().equals(idUser)){
 	            	room.setIdCard1(idCard);
 	            	roomRepository.save(room);
+	            	result = "carte 1 ajoutee";
 	            }else{
 	            	room.setIdUser2(idUser);
 	            	room.setIdCard2(idCard);
 		            room.setRoomState("In Progress");
 		            roomRepository.save(room);
 		            GameRoom(room);
+		            result = "carte 2 ajoutee";
 	            }
 	        }
 		}
+		return result;
 	}
 	
 	//TODO Teste avec jeu réel (requête http marche)
