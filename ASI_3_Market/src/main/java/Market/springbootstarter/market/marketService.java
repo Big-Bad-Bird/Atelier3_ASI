@@ -17,9 +17,9 @@ public class marketService {
 	
 	// TODO Demander URL pour ça
 	final String urlUserMoneyGet = "http://localhost:8081/";
-	final String urlUserMoneyPut = "http://localhost:8081//updatemoney/";
-	final String urlUserCollection = "http://localhost:8081/";
-	
+	final String urlUserMoneyPut = "http://localhost:8081/updatemoney/";
+	final String urlCardPutSell = "http://localhost:8081/addCardCollec/";
+	final String urlCardPutBuy = "http://localhost:8081/delCardCollec/";
 	RestTemplate restTemplate = new RestTemplate();
 	ObjectMapper objectMapper = new ObjectMapper();
 	
@@ -35,11 +35,11 @@ public class marketService {
 			
 			final String urlCardId = "http://localhost:8083/Card/ById/" + idCard;
 			int costCard = restTemplate.getForObject(urlCardId, cardModel.class).getPrice();
-			// envoyer nouvelle valeur argent
+			// envoyer nouvelle valeur argent ici delta < 0 car on achète
 			costCard = - costCard;
 			restTemplate.put(this.urlUserMoneyPut  + idUser, costCard);
-			// collec -
-				
+			// collec + donc url pour ajouter carte
+			restTemplate.put(this.urlCardPutBuy + idUser, idCard);
 		}
 	
 	public void sell(String idUser, String idCard) {
@@ -51,9 +51,12 @@ public class marketService {
 		int costCard = restTemplate.getForObject(urlCardId, cardModel.class).getPrice();
 
 		restTemplate.put(this.urlUserMoneyPut  + idUser, costCard);
+		
+		// collec - donc url pour enlever carte
+		restTemplate.put(this.urlCardPutSell + idUser, idCard);
 		//HttpEntity<int> delta = new HttpEntity<>(costCard);
 		//restTemplate.exchange(this.urlUserMoneyPut  + idUser, HttpMethod.PUT, delta, Void.class);
-		// collec -
+		
 		
 	}
 	public List<cardModel> list() {
